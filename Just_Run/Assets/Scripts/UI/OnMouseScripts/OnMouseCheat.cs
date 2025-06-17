@@ -50,6 +50,10 @@ public class OnMouseCheat : MonoBehaviour
     // Oyuncu Ýkona Týklayarak Hileyi Kapatýr Veya Açar.
     private void OnMouseDown()
     {
+        // Ýmleci Kapatýr.
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         // Olasý Buglarý Engellemek Ýçin Deðiþken Ayarý.
         isCheatAnimPlaying = true;
 
@@ -234,7 +238,7 @@ public class OnMouseCheat : MonoBehaviour
         if (value == true)
         {
             // Deðiþken Atamalarý.
-            Transform canvasPath = GameObject.Find("Canvas").transform.GetChild(10);
+            Transform canvasPath = GameObject.Find("Canvas").transform.GetChild(11);
 
             // Ayarlar Panelini Hileli Ayarlar Paneline Çevirme.
             canvasPath.GetComponent<Image>().sprite = cheatSettingsPanel;
@@ -246,7 +250,7 @@ public class OnMouseCheat : MonoBehaviour
         else
         {
             // Deðiþken Atamalarý.
-            Transform canvasPath = GameObject.Find("Canvas").transform.GetChild(10);
+            Transform canvasPath = GameObject.Find("Canvas").transform.GetChild(11);
 
             // Ayarlar Panelini Normal Ayarlar Paneline Çevirme.
             canvasPath.GetComponent<Image>().sprite = settingsPanel;
@@ -255,6 +259,10 @@ public class OnMouseCheat : MonoBehaviour
             canvasPath.GetChild(2).GetComponent<RectTransform>().anchoredPosition = new Vector2(0.0f, 0.0f);
             canvasPath.GetChild(3).gameObject.SetActive(false);
         }
+
+        // Ýmleci Açar.
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         // OnMouseEnter Ve OnMouseExit Metodlarýnýn Tekrar Çalýþýlabilmesini Saðlama.
         isCheatAnimPlaying = false;

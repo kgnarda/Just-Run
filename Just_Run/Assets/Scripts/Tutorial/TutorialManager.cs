@@ -424,6 +424,8 @@ public class TutorialManager : MonoBehaviour
         PrintADialogToTheScreen(texts[14], TypeWriter(".,"));
         yield return StartCoroutine(WriterLoop());
 
+        // Ateş Topunu Açar.
+        GameObject.Find("Canvas").transform.GetChild(0).gameObject.SetActive(true);
         PrintADialogToTheScreen(texts[15], TypeWriter("!,"));
         yield return StartCoroutine(WriterLoop());
 
@@ -618,14 +620,13 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         Instantiate(eagle, new Vector2(10.0f, 0.5f), Quaternion.identity).name = "EagleTTRL_6";
-        Instantiate(eagle, new Vector2(14.0f, 0.5f), Quaternion.identity).name = "EagleTTRL_7";
         yield return new WaitForSeconds(1.0f);
 
         Instantiate(solidWall, new Vector2(8.0f, -1.18f), Quaternion.identity).name = "SolidWallTTRL_8";
         yield return new WaitForSeconds(1.0f);
 
-        Instantiate(eagle, new Vector2(10.0f, 0.5f), Quaternion.identity).name = "EagleTTRL_8";
-        Instantiate(eagle, new Vector2(14.0f, 0.5f), Quaternion.identity).name = "EagleTTRL_9";
+        Instantiate(eagle, new Vector2(10.0f, 0.5f), Quaternion.identity).name = "EagleTTRL_7";
+        Instantiate(eagle, new Vector2(14.0f, 0.5f), Quaternion.identity).name = "EagleTTRL_8";
     }
     #endregion
 
@@ -802,7 +803,7 @@ public class TutorialManager : MonoBehaviour
             StartCoroutine(TypeWriterController2());
         else if (numberOfEnemiesKilled == 14 && numberOfTask == 3)
             StartCoroutine(TypeWriterController3());
-        else if (numberOfEnemiesKilled == 25 && numberOfTask == 4)
+        else if (numberOfEnemiesKilled == 24 && numberOfTask == 4)
             StartCoroutine(TypeWriterController4());
     }
     #endregion
@@ -1736,6 +1737,7 @@ public class TutorialManager : MonoBehaviour
     {
         // Önceki Text'den Kalan Press Any Key Textini Kapatma Ve Text Metnini Sıfırlama.
         pressAnyKey.SetActive(false);
+        pressAnyKey = GameObject.Find("Canvas").transform.GetChild(4).gameObject;
         textPanelText.text = null;
 
         // Parametre Olarak Alınan (typeWriterText) Text Ekrana Yazdırılmaya Başlar.
@@ -1756,12 +1758,10 @@ public class TutorialManager : MonoBehaviour
             else
                 yield return new WaitForSeconds(0.075f);
         }
-        
-        // Bitiş, Konuşma Animasyonu Biter Ve Press Any Key To Leave Yazısı Ortaya Çıkar.
-        Destroy(pressAnyKey);
-        yield return new WaitForSeconds(0.03f);
-        GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
+
+        // Sisteme Metinin Bittiği Bildirilir Ve Press Any Key Yazısı Ortaya Çıkar.
         isDone = true;
+        pressAnyKey.SetActive(true);
     }
     public IEnumerator StartKeepWaitingAnimationForInputIcons(sbyte minimumNumberOfIcons, sbyte maximumNumberOfIcons)
     {

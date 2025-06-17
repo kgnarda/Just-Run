@@ -22,8 +22,8 @@ public class OnMouseRefresh : MonoBehaviour
         gameObject.GetComponent<RectTransform>().localScale = new Vector2(1.0f, 1.0f);
 
         // Panel Açýlýp Ses Efekti Çalýnýr.
-        GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(true);
         GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(true);
+        GameObject.Find("Canvas").transform.GetChild(10).gameObject.SetActive(true);
         AudioManager.admgTHIS.PlayOneShotASound("ClickSound1");
 
         // Arkaplanda Kalan Butonlar Pasif Hale Getirilir.

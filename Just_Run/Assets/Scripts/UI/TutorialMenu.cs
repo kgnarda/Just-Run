@@ -22,6 +22,10 @@ public class TutorialMenu : MonoBehaviour
         audioManager.GetChild(1).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("soundVolume");
         audioManager.GetChild(2).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("soundVolume");
 
+        // Ýmleci Kapar.
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         // ESC Ýle Paneli Açýp Kapatma.
         while (true)
         {
@@ -31,6 +35,10 @@ public class TutorialMenu : MonoBehaviour
 
                 if (quitPanelIsActive == true)
                 {
+                    // Ýmleci Açar.
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+
                     // Karakteri Pasif Hale Getirme.
                     GameObject character = GameObject.Find("Character");
                     if (character == true)
@@ -61,6 +69,10 @@ public class TutorialMenu : MonoBehaviour
     {
         if (focus == false)
         {
+            // Ýmleci Açar.
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             // Karakteri Pasif Hale Getirme.
             GameObject character = GameObject.Find("Character");
             if (character == true)
@@ -87,6 +99,10 @@ public class TutorialMenu : MonoBehaviour
     }
     public void QuitAnswerIsNo()
     {
+        // Ýmleci Kapar.
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         // Karakteri Aktif Hale Getirme.
         GameObject character = GameObject.Find("Character");
         if (character == true)

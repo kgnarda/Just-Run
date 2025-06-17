@@ -3,13 +3,13 @@
 ///
 ///   <<< TITLE >>>
 ///
-/// Son Güncelleme: 18.11.2023
+/// Son Güncelleme: 12.06.2025
 /// Bu Tarihten Sonraki Güncellemeler Buraya Dahil Değil.
 ///
 ///
 ///  <<< STATISTICK >>>
 ///
-/// Toplam Yazılan Kod  =>  5467
+/// Toplam Yazılan Kod  =>  5491
 /// Toplam Script       =>  32
 /// Toplam Animatör     =>  22
 /// Toplam Animasyon    =>  40
@@ -19,13 +19,13 @@
 ///
 ///
 ///
-///   <<< ☪  Made By Arda Ensar Aşçı  ☪ >>>
+///   <<<   Made By:  Kağan Arda BOZOK   >>>
 ///
-///       Contact:
-///       Mail      -> ensarpg53@gmail.com
-///       Instagram -> a.ensar53
-///       LinkedIn  -> Arda Ensar Aşçı
-///       Github    -> Olric0
+///   Contact:
+///   Mail      -> iletisim@kaganardabozok.com
+///   Instagram -> kgnarda
+///   LinkedIn  -> Kağan Arda Bozok
+///   Github    -> kgnarda
 ///
 ///
 /// </summary>

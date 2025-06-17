@@ -48,9 +48,6 @@ public class PotionManager : MonoBehaviour
         // Ýksir Deðiþkenlerini Ayarlama.
         isTheAnyPotionAnimActive = true;
 
-        // Durdurma Butonunu Devre Dýþý Býrakma.
-        GameObject.Find("Canvas/PauseBTN").GetComponent<UnityEngine.UI.Button>().enabled = false;
-
         // Oyuncunun Zýplamasýný Engelleme, Pozisyonunu Düzeltme Ve Yürüme Animasyonunu Kapatma.
         Character.chrctrTHIS.isOnGround = false;
         GameObject.Find("Character").transform.position = new Vector2(-1.2f, -0.74f);
@@ -81,7 +78,7 @@ public class PotionManager : MonoBehaviour
             case "blindness":
             case "blindnesspotion":
                 // Körlük Ýksirini Ýçme Animasyonunu Baþlatma.
-                GameObject.Find("Canvas").transform.GetChild(6).gameObject.SetActive(true);
+                GameObject.Find("Canvas").transform.GetChild(5).gameObject.SetActive(true);
                 Character.chrctrTHIS.characterANMTR.Play("DrinkBlindnessPotion");
 
                 // Baþlatýlan Animasyonu Desteklemek Ýçin Müzik Efekti Ve Kamera Efektininin Animasyonlarýný Etkinleþtirme.

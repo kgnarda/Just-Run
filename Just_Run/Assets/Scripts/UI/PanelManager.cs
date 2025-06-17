@@ -70,8 +70,12 @@ public class PanelManager : MonoBehaviour
         soundEffectsVolumeSlider.value = PlayerPrefs.GetFloat("soundVolume");
 
         // Oyuncu Ana Menüdeyse  [ PauseGameForMainMenuScene() ]  Metodunu Aktif Et Ve Sahnenin Dil Ayarlarını Kontrol Et.
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
+            // İmleci Açar.
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             StartCoroutine(PauseGameForMainMenuScene());
 
             // Ana Menü İçin Dil Ayarlarını Kontrol Etme.
@@ -105,8 +109,11 @@ public class PanelManager : MonoBehaviour
             }
         }
         // Oyuncu Oyun Menüsündeyse  [ PauseGameForGameScene() ]  Metodunu Aktif Et Ve Sahnenin Dil Ayarlarını Kontrol Et.
-        else
+        else if (SceneManager.GetActiveScene().name == "Game")
         {
+            // İmleci Kapatır.
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             StartCoroutine(PauseGameForGameScene());
 
             // Oyun Menüsü İçin Dil Ayarlarını Kontrol Etme.
@@ -193,6 +200,10 @@ public class PanelManager : MonoBehaviour
         if (focus == false && SceneManager.GetActiveScene().buildIndex == 1 && Character.chrctrTHIS.health != 0
             && PotionManager.isTheAnyPotionAnimActive == false && settingsPanelIsActive == false)
         {
+            // İmleci Açar.
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             // Stop Panel'i Aktifleştirme.
             pausePanelIsActive = true;
             pausePanel.SetActive(true);
@@ -348,6 +359,10 @@ public class PanelManager : MonoBehaviour
     #region Pause Panel Ayarları
     public void OpenPausePanel()
     {
+        // İmleci Açar.
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         // Stop Panel'i Aktifleştirme.
         pausePanelIsActive = true;
         pausePanel.SetActive(true);
@@ -368,6 +383,10 @@ public class PanelManager : MonoBehaviour
     }
     public void ClosePausePanel()
     {
+        // İmleci Kapatır.
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         // Stop Panel'i Kapatma.
         pausePanelIsActive = false;
         pausePanel.SetActive(false);

@@ -38,8 +38,7 @@ public class CheatManager : MonoBehaviour
         // Eğer Hile Açıksa Sahneyi Hileli Versiyona Göre Hazırlama.
         if (PlayerPrefs.GetInt("isCheatModeActive") == 1)
         {
-            // Eğer Oyuncu 0. Sahne İndeksinde İse Ana Sahnededir. Ve Buna Özel Ayarlamalar Yapılır.
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            if (SceneManager.GetActiveScene().name == "MainMenu")
             {
                 // Değişken Atamaları.
                 Transform canvasPath = GameObject.Find("Canvas").transform;
@@ -55,22 +54,21 @@ public class CheatManager : MonoBehaviour
                 canvasPath.GetChild(0).GetChild(1).gameObject.SetActive(true);
 
                 // Ayarlar Panelini Hileli Ayarlar Paneline Çevirme.
-                canvasPath = canvasPath.GetChild(10);
+                canvasPath = canvasPath.GetChild(11);
                 canvasPath.GetComponent<Image>().sprite = cheatSettingsPanel;
                 canvasPath.GetComponent<Image>().SetNativeSize();
                 canvasPath.GetChild(1).GetComponent<RectTransform>().anchoredPosition = new Vector2(-326.0f, 0.0f);
                 canvasPath.GetChild(2).GetComponent<RectTransform>().anchoredPosition = new Vector2(-326.0f, 0.0f);
                 canvasPath.GetChild(3).gameObject.SetActive(true);
             }
-            // Eğer Oyuncu 0. Sahne İndeksinde Değil İse Oyun Sahnesindedir. Ve Buna Özel Ayarlamalar Yapılır.
-            else
+            else if (SceneManager.GetActiveScene().name == "Game")
             {
                 // Değişken Atamaları.
-                Transform canvasPath = GameObject.Find("Canvas").transform.GetChild(10);
+                Transform canvasPath = GameObject.Find("Canvas").transform.GetChild(9);
 
                 // Ayarlar Butonunu Hileli Versiyonu İle Değiştirme.
+                GameObject.Find("Canvas").transform.GetChild(7).GetChild(2).gameObject.GetComponent<Image>().sprite = cheatSettingsButton;
                 GameObject.Find("Canvas").transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().sprite = cheatSettingsButton;
-                GameObject.Find("Canvas").transform.GetChild(9).GetChild(2).gameObject.GetComponent<Image>().sprite = cheatSettingsButton;
 
                 // Ayarlar Panelini Hileli Ayarlar Paneline Çevirme.
                 canvasPath.GetComponent<Image>().sprite = cheatSettingsPanel;

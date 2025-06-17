@@ -70,11 +70,6 @@ using UnityEngine.UI;
 ///     -> [ canFireballBeUsed ]
 ///     Bu Deðiþken Sadece Oyuncu Koþuyor Veya Zýplýyorsa True Olur, Ve False Olduðu Süre Boyunca Oyuncu Ateþ Topu Atamaz.
 /// 
-/// 
-/// [Header("Other")]
-///     -> [ pauseBtn ]
-///     Herhangi Bir Ýksir Ýçildiðinde Sol Üstteki Durdurma Butonunun Pasif Olmasý Lazýmki Animasyon Buga Girmesin. Bu Deðiþkende O Durdurma Butonu.
-/// 
 /// </summary>
 public class Character : MonoBehaviour
 {
@@ -105,9 +100,6 @@ public class Character : MonoBehaviour
     [SerializeField] private Animator fireballIconAnmtr;
     internal bool isTheFireballActive;
     internal bool canFireballBeUsed;
-
-    [Header("Other")]
-    [SerializeField] private Button pauseBtn;
 
     public static Character chrctrTHIS;
     internal byte health = 2;
@@ -239,16 +231,19 @@ public class Character : MonoBehaviour
     // Bu Metot MinusHealth Metoduyla Baðlantýlý, Oradan Tetikleniyor. Adý Üstünde Yani Çok Bir Þeyi Yok.
     internal void Die()
     {
+        // Ýmleci Açar.
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         // Son Kalbin Yok Edilme Animasyonunun Tetiklenmesi.
         GameObject.Find("Canvas").transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>().enabled = true;
 
         // Ölüm Panelinin Ve Fake Panelin Aktif Edilmesi.
+        GameObject.Find("Canvas").transform.GetChild(6).gameObject.SetActive(true);
         GameObject.Find("Canvas").transform.GetChild(7).gameObject.SetActive(true);
-        GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(true);
 
         // Körlük Efektinin Kapatma Ve Oyunu Durdurma Butonunu Pasif Hale Getirme.
         Destroy(blindnessEffect);
-        GameObject.Find("Canvas/PauseBTN").SetActive(false);
 
         // Bütün Düþmanlarýn Scriptlerini Yok Etme.
         Transform enemiesPath = GameObject.Find("Enemies").transform;
@@ -323,9 +318,6 @@ public class Character : MonoBehaviour
         PotionManager.isTheAnyPotionAnimActive = false;
         PotionManager.isTheAnyPotionActive = false;
 
-        // Oyunu Durdurma Özelliðini Geri Aktifleþtirir, Ýksir Ýçilme Esnasýnda False Oluyor.
-        pauseBtn.enabled = true;
-
         // Oyuncu Tekrardan Zýplayabilir.
         rb.velocity = Vector2.zero;
         rb.AddForce(Vector2.zero);
@@ -368,7 +360,6 @@ public class Character : MonoBehaviour
     {
         // Oyunun Durdurulmasý Engellenir.
         PotionManager.isTheAnyPotionAnimActive = true;
-        pauseBtn.enabled = false;
 
         // Güç Ýksirinin Etkisi Bitmeden Önce Oyun Hýzýný Yavaþlatýp Hýzlandýrma.
         for (float i = 1.8f; i >= 0.6f; i -= 0.05f)
@@ -394,9 +385,6 @@ public class Character : MonoBehaviour
         // Son Kez PotionInfo Animasyonunu Tetikler Ve Þiþeyi Eski Haline Çevirir.
         GameObject.Find("Canvas/PowerPotionIcon").gameObject.GetComponent<Animator>().SetTrigger("changePotionSpriteAnim");
         powerPotionIcon.sprite = potionEmptySprite;
-
-        // Oyun Tekrardan Durdurulabilir.
-        pauseBtn.enabled = true;
 
         // Oyun Mekanikleri Eski Haline Döner Ve Artýk Ýksir Özelliði Biter.
         PotionManager.didThePlayerDrankPowerPotion = false;
@@ -451,9 +439,6 @@ public class Character : MonoBehaviour
 
         // Sýrasýyla: Körlük Efektinin Image'i Aktif Edilir Ve Durdurma Butonu Tekrardan Aktifleþir.
         gameObject.transform.GetChild(3).gameObject.SetActive(true);
-        pauseBtn.enabled = true;
-
-
 
         // Zamanlayýcýyý Baþlatma, 15 Saniye Boyunca Karakter Kör Olucak.
         yield return new WaitForSecondsRealtime(15.0f);
@@ -510,9 +495,6 @@ public class Character : MonoBehaviour
         // Ýksirin Kontrolünü Saðlayabilmek Ýçin Gerekli Deðiþkenler Set Edilir.
         PotionManager.isTheAnyPotionAnimActive = false;
         PotionManager.isTheAnyPotionActive = false;
-
-        // Oyunu Durdurma Özelliðini Geri Aktifleþtirir, Ýksir Ýçilme Esnasýnda False Oluyor.
-        pauseBtn.enabled = true;
 
         // Oyuncu Tekrardan Zýplayabilir.
         rb.velocity = Vector2.zero;
